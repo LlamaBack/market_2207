@@ -1,5 +1,5 @@
 class Market
-  attr_reader :name, :vendors
+  attr_reader :name, :vendors, :total_inventory
   def initialize(name)
     @name = name
     @vendors = []
@@ -19,5 +19,16 @@ class Market
     @vendors.select do |vendor|
       vendor.inventory.key?(item)
     end
+  end
+
+  def total_inventory
+    total = Hash.new {|h,k| h[k] = {quantity: 0, vendors: []}}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, qty|
+        total[item][:quantity] += qty
+        total[item][:vendors] << vendor
+      end
+    end
+    total
   end
 end

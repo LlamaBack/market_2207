@@ -26,4 +26,22 @@ RSpec.describe do
     expect(market.vendors_that_sell(item2)).to eq([vendor1,vendor2])
   end
 
+  it "can add vendors and list them by item" do
+    vendor1.stock(item1, 20)
+    vendor1.stock(item2, 30)
+    vendor2.stock(item2, 100)
+    market.add_vendor(vendor1)
+    market.add_vendor(vendor2)
+
+    expect(market.total_inventory).to eq( { item1 => {
+                                              quantity: 20,
+                                              vendors: [vendor1]
+                                            },
+                                            item2 => {
+                                              quantity: 130,
+                                              vendors: [vendor1, vendor2]
+                                            }
+                                          } )
+  end
+
 end
