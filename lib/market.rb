@@ -31,4 +31,7 @@ class Market
     end
     total
   end
+
+  def overstocked_items
+  end
 end
