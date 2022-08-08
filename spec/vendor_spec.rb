@@ -8,6 +8,7 @@ RSpec.describe Vendor do
   it 'exists and has readable attributes' do
     expect(vendor).to be_a(Vendor)
     expect(vendor.inventory).to eq({})
+    expect(vendor.name).to eq("Rocky Mountain Fresh")
   end
 
   it 'can check_stock and stock items' do
