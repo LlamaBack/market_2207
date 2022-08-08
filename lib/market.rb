@@ -33,5 +33,10 @@ class Market
   end
 
   def overstocked_items
+    total_inventory.keys.select do |item|
+      total_inventory[item][:quantity] > 50 && total_inventory[item][:vendors].length > 1
+    end
   end
+
+  
 end
