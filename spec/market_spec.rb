@@ -70,6 +70,7 @@ RSpec.describe do
   end
 
   it "can sell items" do
+    item5 = Item.new({name: 'Onion', price: '$0.25'})
     vendor1.stock(item1, 20)
     vendor1.stock(item2, 30)
     vendor2.stock(item2, 100)

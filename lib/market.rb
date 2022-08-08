@@ -45,4 +45,19 @@ class Market
       item.name
     end.sort
   end
+
+  def sell(item, qty)
+    if total_inventory[item][:quantity] < qty
+      return false
+    end
+    vendors.each do |vendor|
+      if vendor.inventory[item] > qty
+        vendor.inventory[item] -= qty
+        return true
+      else
+        qty -= vendor.inventory[item]
+        vendor.inventory[item] = 0
+      end
+    end
+  end
 end
