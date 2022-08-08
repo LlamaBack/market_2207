@@ -61,7 +61,7 @@ RSpec.describe do
     market.add_vendor(vendor1)
     market.add_vendor(vendor2)
 
-    expect(market.overstocked_items).to eq(["Peach", "Tomato"])
+    expect(market.sorted_item_list).to eq(["Peach", "Tomato"])
   end
 
 end
