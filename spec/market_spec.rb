@@ -54,4 +54,14 @@ RSpec.describe do
     expect(market.overstocked_items).to eq([item2])
   end
 
+  it "can sort items alphabetically" do
+    vendor1.stock(item1, 20)
+    vendor1.stock(item2, 30)
+    vendor2.stock(item2, 100)
+    market.add_vendor(vendor1)
+    market.add_vendor(vendor2)
+
+    expect(market.overstocked_items).to eq(["Peach", "Tomato"])
+  end
+
 end
