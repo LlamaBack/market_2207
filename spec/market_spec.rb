@@ -64,4 +64,10 @@ RSpec.describe do
     expect(market.sorted_item_list).to eq(["Peach", "Tomato"])
   end
 
+  it "is created with a date" do
+    allow(market).to receieve(:today) {"24/02/2020"}
+
+    expect(market.date).to eq("24/02/2020")
+  end
+
 end
