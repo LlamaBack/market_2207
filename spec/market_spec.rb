@@ -66,8 +66,24 @@ RSpec.describe do
 
   it "is created with a date" do
     allow_any_instance_of(Date).to receive(:strftime).and_return("24/02/2020")
-
     expect(market.date).to eq("24/02/2020")
+  end
+
+  it "can sell items" do
+    vendor1.stock(item1, 20)
+    vendor1.stock(item2, 30)
+    vendor2.stock(item2, 100)
+    market.add_vendor(vendor1)
+    market.add_vendor(vendor2)
+
+    expect(market.sell(item1, 200)).to eq(false)
+    expect(market.sell(item5, 1)).to eq(false)
+    expect(market.sell(item2, 5)).to eq(true)
+    expect(vendor1.check_stock(item2)).to eq(25)
+    expect(vendor2.check_stock(item2)).to eq(100)
+    expect(market.sell(item2, 75)).to eq(true)
+    expect(vendor1.check_stock(item2)).to eq(0)
+    expect(vendor2.check_stock(item2)).to eq(50)
   end
 
 end
