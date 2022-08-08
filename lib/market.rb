@@ -1,3 +1,4 @@
+require "date"
 class Market
   attr_reader :name, :vendors, :total_inventory, :date
   def initialize(name)
